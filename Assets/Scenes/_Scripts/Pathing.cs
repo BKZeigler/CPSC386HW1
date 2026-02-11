@@ -3,8 +3,10 @@ using UnityEngine;
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 
-//2 TODOS BELOW:
+//1 TODOS BELOW:
+//Combine FetchTargetPositiona and FetchCurrentPosition into FetchDistanceDifference (will use for while condition)
 
 public class Pathing : MonoBehaviour
 {
@@ -18,16 +20,32 @@ public class Pathing : MonoBehaviour
     Vector3 TopRight = new Vector3(0.5f, 0.75f, 0);
 
     //Stores current position of the object
-    public Vector3 currentPosition = new Vector3(5, 0, 0);
+    public Vector3 currentPosition = new Vector3(0, 0, 0);
 
     //Stores target position of the object
     public Vector3 targetPosition = new Vector3(0, 0, 0);
+
+    //Stores the target object
+    public GameObject targetObject;
     //fetches the target postion of other object
     void FetchTargetPosition()
     {
-        GameObject targetObject = GameObject.Find("Ally1"); //finds the target object by tag
-        if (targetObject != null)
+
+        Match match = Regex.Match(gameObject.tag, "Ally|Enemy"); //checks if the object is an ally or enemy
+        if (match.Success)
         {
+            if (match.Groups[0].Value == "Ally") //if an ally
+            {
+                targetObject = GameObject.FindWithTag("Enemy"); //target is the enemy
+            }
+            else if (match.Groups[0].Value == "Enemy") //if an enemy
+            {
+                targetObject = GameObject.FindWithTag("Ally"); //target is the ally
+            }
+        }
+
+         if (targetObject != null)
+            {
             targetPosition = targetObject.transform.position; 
             Debug.Log("Target position updated: " + targetPosition); //logs the updated target position
         }
@@ -45,7 +63,6 @@ public class Pathing : MonoBehaviour
     IEnumerator TargetPathing(float seconds)
     {
         //TODO: SWITCH TO A CONDITION SO THAT UNIT STOPS WHEN IN RANGE OF TARGET
-        //TODO: FIX BUG THAT MAKES UNIT ALWAYS GO LEFT ON START OF GAME
         while (true) //infinite loop to continuously update movement towards target
         {
         //calculates the distance between current and target position
@@ -95,6 +112,8 @@ public class Pathing : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        FetchCurrentPosition(); //initializes current position
+        FetchTargetPosition(); //initializes target position
         StartCoroutine(TargetPathing(1f)); //performs move logic with given time delay (fasters units smaller delay)
     }
 
