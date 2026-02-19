@@ -5,7 +5,7 @@ public class GridManager : MonoBehaviour
 {
     public Grid grid; // Assign your Grid with Hex layout
 
-    private Dictionary<Vector3Int, GameObject> occupied = new();
+    private Dictionary<Vector3Int, GameObject> occupied = new(); // hexes with a unit gameobject are occupied
 
     private void Awake()
     {

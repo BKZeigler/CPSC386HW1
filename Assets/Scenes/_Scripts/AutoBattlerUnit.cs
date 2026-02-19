@@ -22,6 +22,8 @@ public class AutoBattlerUnit : MonoBehaviour
 
     private HealthBar healthBar;
 
+    private BattleState battleState;
+
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
@@ -29,6 +31,15 @@ public class AutoBattlerUnit : MonoBehaviour
     }
     private void Start()
     {
+
+        if(tag == "Ally") // double check for random spawn
+        {
+            team = UnitTeam.Ally;
+        } else if (tag == "Enemy")
+        {
+            team = UnitTeam.Enemy;
+        }
+
         GetComponent<SpriteRenderer>().color = team == UnitTeam.Ally ? Color.blue : Color.red; // if ally make blue, else red
 
         currentHealth = maxHealth; // On start, make sure health is at maximum
@@ -37,6 +48,15 @@ public class AutoBattlerUnit : MonoBehaviour
         grid = FindFirstObjectByType<GridManager>(); // intialize the scene grid it lives on
         pathfinder = new Pathfinder(grid); // this unit uses A* pathfinding, so we use that as the pathfinder
         mover = GetComponent<UnitMovementController>(); // intialize the mover which changes the unit's position visually
+        battleState = FindFirstObjectByType<BattleState>(); //intialize the battle state to keep track of win/loss conditions
+
+        if (team == UnitTeam.Ally)
+        {
+            battleState.AllyCount++;
+        } else if (team == UnitTeam.Enemy)
+        {
+            battleState.EnemyCount++;
+        }
 
         grid.RegisterUnit(gameObject);
     }
@@ -44,6 +64,13 @@ public class AutoBattlerUnit : MonoBehaviour
     private void OnDestroy()
     {
         grid.UnregisterUnit(gameObject);
+        if (team == UnitTeam.Ally)
+        {
+            battleState.AllyCount--;
+        } else if (team == UnitTeam.Enemy)
+        {
+            battleState.EnemyCount--;
+        }
     }
 
     private void Update()
