@@ -25,6 +25,7 @@ public class AutoBattlerUnit : MonoBehaviour
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        rangeScanner = GetComponent<RangeScanner>();
     }
     private void Start()
     {
@@ -81,6 +82,9 @@ public class AutoBattlerUnit : MonoBehaviour
         if (rangeScanner != null)
         {
             rangeScanner.CheckRange();
+        } else
+        {
+            Debug.LogWarning("RangeScanner component not found on " + gameObject.name);
         }
 
     }

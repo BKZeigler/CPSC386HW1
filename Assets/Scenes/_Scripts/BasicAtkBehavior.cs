@@ -9,10 +9,10 @@ public class BasicAtkBehavior : MonoBehaviour
 
     private AutoBattlerUnit unit; //stores parent unit
 
-    public BasicAtkBehavior(AutoBattlerUnit unit) // constructor to set parent unit
+    private void Start()
     {
-        this.unit = unit;
-    }                  
+        unit = GetComponent<AutoBattlerUnit>();
+    }              
     public void Attack(AutoBattlerUnit target)
     {
         if (target != null) //if target is alive and valid

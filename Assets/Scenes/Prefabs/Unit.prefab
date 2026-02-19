@@ -328,6 +328,8 @@ GameObject:
   - component: {fileID: 7779645212953728536}
   - component: {fileID: 4233070926776139026}
   - component: {fileID: 1372273388397108499}
+  - component: {fileID: 5486766689017835258}
+  - component: {fileID: 2142765718423027316}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Enemy
@@ -426,6 +428,9 @@ MonoBehaviour:
   thinkInterval: 0.3
   currentHealth: 100
   maxHealth: 100
+  range: 1
+  atkSpd: 1
+  damage: 10
 --- !u!114 &1372273388397108499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +444,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitMovementController
   moveSpeed: 4
+--- !u!114 &5486766689017835258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493993284944372760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31321592d1e8d34fafb58a635684a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeScanner
+--- !u!114 &2142765718423027316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493993284944372760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc53ddded0dc4d408cf438966c6b12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicAtkBehavior
 --- !u!1 &8723595719014944497
 GameObject:
   m_ObjectHideFlags: 0

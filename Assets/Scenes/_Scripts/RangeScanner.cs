@@ -8,14 +8,17 @@ public class RangeScanner : MonoBehaviour
 
     private AutoBattlerUnit unit; //stores parent unit
 
-    public RangeScanner(AutoBattlerUnit unit) // constructor to set parent unit
+
+    private void Start()
     {
-        this.unit = unit;
+        unit = GetComponent<AutoBattlerUnit>();
     }
     public void CheckRange()
     {
         // will be called from AutoBattlerUnit's Think() function after target is found and path is generated
-        if (unit == null) return; // if no parent unit, return
+        if (unit == null) {
+            return; // if no parent unit, return
+        }
         AutoBattlerUnit closestEnemy = unit.FindClosestEnemy();
         if (closestEnemy != null) // if there is an enemy
         {
