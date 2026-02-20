@@ -11,19 +11,18 @@ public class RangeScanner : MonoBehaviour
 
     private void Start()
     {
-        unit = GetComponent<AutoBattlerUnit>();
+        unit = GetComponent<AutoBattlerUnit>(); // get the unit I am attached to
     }
-    public void CheckRange()
+    public void CheckRange() // called every think interval from AutoBattlerUnit
     {
-        // will be called from AutoBattlerUnit's Think() function after target is found and path is generated
         if (unit == null) {
             return; // if no parent unit, return
         }
-        AutoBattlerUnit closestEnemy = unit.FindClosestEnemy();
+        AutoBattlerUnit closestEnemy = unit.FindClosestEnemy(); // use AutoBattlerUnit's find closest enemy
         if (closestEnemy != null) // if there is an enemy
         {
-            float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
-            if (distance <= unit.range) //check if in range
+            float distance = Vector3.Distance(transform.position, closestEnemy.transform.position); // calc distance between
+            if (distance <= unit.range) //check if in range, that distance < range
             {
                 GetComponent<BasicAtkBehavior>().Attack(closestEnemy); // calls the basic attack behavior for now, will be changed to parse through attached abilities in later build
             }

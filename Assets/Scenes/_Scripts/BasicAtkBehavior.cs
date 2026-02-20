@@ -11,9 +11,9 @@ public class BasicAtkBehavior : MonoBehaviour
 
     private void Start()
     {
-        unit = GetComponent<AutoBattlerUnit>();
+        unit = GetComponent<AutoBattlerUnit>(); // get the unit I am atttached to
     }              
-    public void Attack(AutoBattlerUnit target)
+    public void Attack(AutoBattlerUnit target) // can only attack units currently
     {
         if (target != null) //if target is alive and valid
         {

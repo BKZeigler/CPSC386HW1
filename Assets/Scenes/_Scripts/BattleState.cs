@@ -5,27 +5,26 @@ using UnityEngine;
 public class BattleState : MonoBehaviour
 {
 
-    public int AllyCount;
-    public int EnemyCount;
-    // Update is called once per frame
-    void Update()
+    public int AllyCount; // stores how many allies are alive
+    public int EnemyCount; // stores how many enemies are alive
+    void Update() // look for win/loss conditions every frame
     {
         if (AllyCount <= 0)
         {
-            Lose();
+            Lose(); // if no allies, must have lost
         }
         else if (EnemyCount <= 0)
         {
-            Win();
+            Win(); // if no enemies, must have won
         }
     }
 
-    private void Win()
+    private void Win() // loads the win scnene
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
     }
 
-    private void Lose()
+    private void Lose() // loads the lose scene
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lose");
     }
