@@ -28,4 +28,21 @@ public class RangeScanner : MonoBehaviour
             }
         }
     }
+
+    public bool InRange()
+    {
+            if (unit == null) {
+                return false; // if no parent unit, return false
+            }
+            AutoBattlerUnit closestEnemy = unit.FindClosestEnemy(); // use AutoBattlerUnit's find closest enemy
+            if (closestEnemy != null) // if there is an enemy
+            {
+                float distance = Vector3.Distance(transform.position, closestEnemy.transform.position); // calc distance between
+                if (distance <= unit.range) //check if in range, that distance < range
+                {
+                    return true; // return true if in range
+                }
+            }
+        return false; // return false if not in range
+    }
 }

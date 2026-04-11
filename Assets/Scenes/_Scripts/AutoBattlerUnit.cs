@@ -87,6 +87,17 @@ public class AutoBattlerUnit : MonoBehaviour
     {
         // Movement Portion done by Microsoft Copilot
 
+        // Attack Portion done by me
+        if (rangeScanner != null) // if unit has range scanner component
+        {
+            rangeScanner.CheckRange(); // check range for targeted enemy
+        } else
+        {
+            Debug.LogWarning("RangeScanner component not found on " + gameObject.name);
+        }
+
+        if (rangeScanner.InRange()) return; // if in range, do not skip movement
+
         AutoBattlerUnit target = FindClosestEnemy(); //finds closest enemy and sets it as the target
         if (target == null) return;
 
@@ -103,15 +114,6 @@ public class AutoBattlerUnit : MonoBehaviour
             grid.UpdateUnitPosition(gameObject, start, nextCell); //move on grid's data
             StopAllCoroutines(); // do not let other units move onto the same cell
             StartCoroutine(mover.MoveToCell(nextCell)); // move the unit visually on the scene grid/board
-        }
-
-        // Attack Portion done by me
-        if (rangeScanner != null) // if unit has range scanner component
-        {
-            rangeScanner.CheckRange(); // check range for targeted enemy
-        } else
-        {
-            Debug.LogWarning("RangeScanner component not found on " + gameObject.name);
         }
 
     }

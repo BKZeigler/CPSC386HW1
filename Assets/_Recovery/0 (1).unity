@@ -4547,6 +4547,10 @@ PrefabInstance:
       propertyPath: attackRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
+      propertyPath: thinkInterval
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6403506692353614710, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

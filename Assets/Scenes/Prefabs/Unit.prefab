@@ -425,10 +425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoBattlerUnit
   team: 0
-  thinkInterval: 0.3
+  thinkInterval: 0.5
   currentHealth: 100
   maxHealth: 100
-  range: 1
+  range: 10
   atkSpd: 1
   damage: 10
 --- !u!114 &1372273388397108499
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a191f7f51e7144796eaf8fa549e4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitMovementController
-  moveSpeed: 4
+  moveSpeed: 6
 --- !u!114 &5486766689017835258
 MonoBehaviour:
   m_ObjectHideFlags: 0
