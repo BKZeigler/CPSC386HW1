@@ -7,6 +7,11 @@ public class BattleState : MonoBehaviour
 
     public int AllyCount; // stores how many allies are alive
     public int EnemyCount; // stores how many enemies are alive
+    void Start()
+    {
+        Time.timeScale = 0; // battle should start paused, so that player can drag units to the field
+    }
+    
     void Update() // look for win/loss conditions every frame
     {
         if (AllyCount <= 0)

@@ -59,6 +59,8 @@ public class AutoBattlerUnit : MonoBehaviour
         }
 
         grid.RegisterUnit(gameObject); // register the unit on the manager's grid data to track position and occupancy
+
+        thinkTimer = thinkInterval; // give brief delay so timescale changes before first think
     }
 
     private void OnDestroy() // when a unit is destroyed on game stop or unit death
