@@ -13,6 +13,7 @@ public class AutoBattlerUnit : MonoBehaviour
 
     public float damage = 10f; // the damage inflicted every think interval given an enemy is in range
 
+    public float level = 1f; // on battle win, increase by 1
     private float thinkTimer; // stores the decreasing timer that when hits zero causes a unit to "think"
     private GridManager grid; // provides the current grid in scene to the manager
     private Pathfinder pathfinder; // applies A* pathfinding to the current grid, updates manager on unit movement/positions
