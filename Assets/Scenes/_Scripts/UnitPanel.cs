@@ -25,7 +25,7 @@ public class UnitPanel : MonoBehaviour
     }
 
     public void shrinkCamera() // shrink the camera to show more of the field and move it to focus on the battle area
-    {
+    { // should eventually be in its own class that modifies camera perhaps even time
         Camera.main.orthographicSize = 6;
         Camera.main.transform.position += new Vector3(-2, 0, 0);
     }

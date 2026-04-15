@@ -14,9 +14,12 @@ public class DragAndDropNewInput2D : MonoBehaviour
     Vector3 offset;
     float zDepth;
 
+    Grid grid;
+
     void Awake()
     {
         cam = Camera.main;
+        grid = FindFirstObjectByType<Grid>(); // need grid to lock on drag stop
     }
 
     void Update()
@@ -30,7 +33,12 @@ public class DragAndDropNewInput2D : MonoBehaviour
             TryBeginDrag(mouse.position.ReadValue());
 
         if (mouse.leftButton.wasReleasedThisFrame)
+        {
+            if (isDragging)
+                SnapToNearestHex();
+
             isDragging = false;
+        }   
 
         if (isDragging)
         {
@@ -58,5 +66,14 @@ public class DragAndDropNewInput2D : MonoBehaviour
     {
         Vector3 sp = new Vector3(screenPos.x, screenPos.y, zDepth);
         return cam.ScreenToWorldPoint(sp);
+    }
+
+    void SnapToNearestHex()
+    {
+        Vector3Int cell = grid.WorldToCell(transform.position); // get nearest cell to position
+
+        Vector3 center = grid.GetCellCenterWorld(cell); // get the center of the cell
+
+        transform.position = center; // make the position of unit the center of the cell
     }
 }

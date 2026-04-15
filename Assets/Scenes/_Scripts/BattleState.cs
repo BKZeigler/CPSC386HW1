@@ -26,11 +26,16 @@ public class BattleState : MonoBehaviour
 
     private void Win() // loads the win scnene
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
+        Camera.main.orthographicSize = 7;
+        Camera.main.transform.position += new Vector3(2, 0, 0);
+        // call saving and loading script to always move to a between screen unless the cleared battle was the last
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Between");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
     }
 
     private void Lose() // loads the lose scene
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Lose");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Between"); // for testing rn
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Lose");
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BetweenPositioner : MonoBehaviour
 {
+    [SerializeField]
     private Transform[] allySpawnPoints;
 
     void Start()
@@ -12,7 +13,7 @@ public class BetweenPositioner : MonoBehaviour
         {
             if (i < allySpawnPoints.Length)
             {
-                allies[i].transform.position = allySpawnPoints[i].position;
+                allies[i].transform.position = allySpawnPoints[i].position; //make ally x go to spawn point x
             }
         }
     }
