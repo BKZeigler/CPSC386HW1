@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Accessibility;
 
 public class AutoBattlerUnit : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class AutoBattlerUnit : MonoBehaviour
     public float damage = 10f; // the damage inflicted every think interval given an enemy is in range
 
     public float level = 1f; // on battle win, increase by 1
+    public float skillPoints = 0f;
     private float thinkTimer; // stores the decreasing timer that when hits zero causes a unit to "think"
     private GridManager grid; // provides the current grid in scene to the manager
     private Pathfinder pathfinder; // applies A* pathfinding to the current grid, updates manager on unit movement/positions
@@ -152,5 +154,38 @@ public class AutoBattlerUnit : MonoBehaviour
             currentHealth = 0f; // avoid a negative health value for health bar
             Destroy(gameObject); // destroy this unit (death)
         }
+    }
+
+    public void LevelUp()
+    {
+        level += 1;
+        skillPoints += 3;
+    }
+
+    public void spendSkillPoint()
+    {
+        //identify which attribute to be leveled
+        //spend skill points here
+        skillPoints -= 1;
+    }
+
+    public void increaseAtk()
+    {
+        damage = damage * 1.1f; // increase damage by 10%
+    }
+
+    public void increaseHealth()
+    {
+        maxHealth = maxHealth * 1.1f; // increase health by 10%
+    }
+
+    public void increaseSpeed()
+    {
+        thinkInterval -= 0.02f; // increase atk spd and move speed
+    }
+
+    public void increaseRange()
+    {
+        range += 1; // increase hex range by 1
     }
 }
