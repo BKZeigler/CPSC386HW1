@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8403517614487635700
+--- !u!1001 &1713397426799824930
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,19 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -555868677518044824, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: draggableLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 309665590006328273, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198189524644472607, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729630229348693360, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3654477141894363483, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -32,13 +20,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4117866820593295423, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
+    - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
+      propertyPath: team
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: range
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
+      propertyPath: damage
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
+      propertyPath: maxHealth
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: moveSpeed
@@ -49,20 +45,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4233070926776139026, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: thinkInterval
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6403506692353614710, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+      propertyPath: currentHealth
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6550084725011599561, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6550084725011599561, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6550084725011599561, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -98,31 +90,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493993284944372760, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_Name
-      value: Ally Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493993284944372760, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
+      value: Wolf Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7493993284944372760, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_TagString
-      value: Ally
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7779645212953728536, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_Color.b
-      value: 0.9245283
+      value: 0.12378062
       objectReference: {fileID: 0}
     - target: {fileID: 7779645212953728536, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_Color.g
-      value: 0.34721965
+      value: 0.12378062
       objectReference: {fileID: 0}
     - target: {fileID: 7779645212953728536, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_Color.r
-      value: 0.13780695
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723595719014944497, guid: ae16797080bc76444895679afdc45fb2, type: 3}
-      propertyPath: m_Layer
-      value: 6
+      value: 0.690566
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
