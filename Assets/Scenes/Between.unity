@@ -311,6 +311,11 @@ MonoBehaviour:
   - {fileID: 309515361}
   - {fileID: 347866447}
   - {fileID: 2010036425}
+  characterPanels:
+  - {fileID: 1158188497}
+  - {fileID: 1425039746}
+  - {fileID: 1231639889}
+  statRowPrefab: {fileID: 7498028954391388415, guid: 6904388339ae346478a0d03b62d0c5df, type: 3}
 --- !u!224 &1158188497 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
@@ -354,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -456,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -597,7 +602,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -830,7 +835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 192653017189858638, guid: 9d97c3c949053714fa291e861ed6e6c4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493993284944372760, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Ally
       objectReference: {fileID: 0}
     - target: {fileID: 7779645212953728536, guid: ae16797080bc76444895679afdc45fb2, type: 3}
       propertyPath: m_Color.b

@@ -26,6 +26,16 @@ public class BattleState : MonoBehaviour
 
     private void Win() // loads the win scnene
     {
+        var allies = FindObjectsByType<AutoBattlerUnit>(FindObjectsSortMode.None);
+
+        foreach (var ally in allies)
+        {
+            if (ally.tag == "Ally") // if unit is an ally
+            {
+                ally.skillPoints += 3;
+            }
+        }
+
         Camera.main.orthographicSize = 7;
         Camera.main.transform.position += new Vector3(2, 0, 0);
         // call saving and loading script to always move to a between screen unless the cleared battle was the last

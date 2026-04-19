@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Accessibility;
 
@@ -26,6 +27,8 @@ public class AutoBattlerUnit : MonoBehaviour
     private HealthBar healthBar; // the updating visual health bar
 
     private BattleState battleState; // used to keep track of win/loss conditions; keep track of number of units
+
+    public event Action<float> onSkillPointsChanged;
 
     private void Awake() //initializes components and their respective variables
     {
@@ -167,6 +170,7 @@ public class AutoBattlerUnit : MonoBehaviour
         //identify which attribute to be leveled
         //spend skill points here
         skillPoints -= 1;
+        onSkillPointsChanged?.Invoke(skillPoints);
     }
 
     public void increaseAtk()
