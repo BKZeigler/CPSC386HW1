@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelProgress : MonoBehaviour // keeps track of what bosses player has beat
+public class LevelProgress : MonoBehaviour // keeps track of what levels player has beat
 {
 
     public static LevelProgress Instance;
@@ -9,11 +9,11 @@ public class LevelProgress : MonoBehaviour // keeps track of what bosses player 
         if(Instance == null) // if progress doesnt exist
         {
             Instance = this; // create it
-            DontDestroyOnLoad(gameObject); // boss progress should not reset on scene change
+            DontDestroyOnLoad(gameObject); // level progress should not reset on scene change
         }
         else // if it already exists
         {
-            Destroy(gameObject); // Only one instance of boss progress should exist
+            Destroy(gameObject); // Only one instance of level progress should exist
         }
 
     }
@@ -26,7 +26,7 @@ public class LevelProgress : MonoBehaviour // keeps track of what bosses player 
 
     public void LevelDefeated(string levelName) // call this whe a boss is defeated
     {
-        PlayerPrefs.SetInt(levelName + "Defeated", 1); // set key to 1 for that boss to say it is defeated
+        PlayerPrefs.SetInt(levelName + "Defeated", 1); // set key to 1 for that level to say it is defeated
         PlayerPrefs.Save(); // save that data
     }
 

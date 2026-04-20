@@ -8,7 +8,7 @@ public class DragAndDropNewInput2D : MonoBehaviour
     public bool canDrag = true;
 
     [Header("Raycast")]
-    public LayerMask draggableLayers = ~0; // assign "Units" layer here
+    public LayerMask draggableLayers = ~0; 
 
     Camera cam;
     bool isDragging = false;
@@ -20,7 +20,6 @@ public class DragAndDropNewInput2D : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        //grid = FindFirstObjectByType<Grid>(); // need grid to lock on drag stop
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -53,7 +52,6 @@ public class DragAndDropNewInput2D : MonoBehaviour
     {
         Vector3 worldPoint = cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));
 
-        // 2D raycast (point cast)
         RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, Mathf.Infinity, draggableLayers);
 
         if (hit.collider != null && hit.transform == transform)

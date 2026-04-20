@@ -7,22 +7,6 @@ public class MainMenu : MonoBehaviour // stores UI functions
     public void LoadGame() // load first level scene
     {
 
-        //var savedUnits = SaveManager.LoadUnits();
-
-        //AllyPersist persist = FindFirstObjectByType<AllyPersist>();
-        //if (persist == null)
-        //{
-        //    GameObject prefab = Resources.Load<GameObject>("AllyPersist");
-        //    GameObject obj = Instantiate(prefab);
-        //    DontDestroyOnLoad(obj);
-        //    persist = obj.GetComponent<AllyPersist>();
-        //}
-
-        //foreach (var data in savedUnits)
-        //{
-        //    UnitCreator.CreateUnit(data, persist.transform);
-        //}
-
         Debug.Log("Load Game button clicked!"); // for testing
         if (LevelProgress.Instance.IsLevelDefeated("LevelOne") && !LevelProgress.Instance.IsLevelDefeated("LevelTwo")) // if first level defeated
         {
