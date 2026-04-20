@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4146568303925592335}
   - component: {fileID: 7081862485439929413}
+  - component: {fileID: 5883108599590159679}
   m_Layer: 0
   m_Name: AllyPersist
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce70f51ebb733b488e74695a3567910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AllyPersist
+--- !u!114 &5883108599590159679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894331916364576331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9828bd8a99be33a4d9ea58f2652a3452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleState
+  AllyCount: 0
+  EnemyCount: 0
 --- !u!1001 &8647459358279061350
 PrefabInstance:
   m_ObjectHideFlags: 0

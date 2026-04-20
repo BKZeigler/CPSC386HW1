@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Accessibility;
+using UnityEngine.SceneManagement;
 
 public class AutoBattlerUnit : MonoBehaviour
 {
@@ -28,12 +29,15 @@ public class AutoBattlerUnit : MonoBehaviour
 
     private BattleState battleState; // used to keep track of win/loss conditions; keep track of number of units
 
+    public string prefabName;
     public event Action<float> onSkillPointsChanged;
 
     private void Awake() //initializes components and their respective variables
     {
         healthBar = GetComponentInChildren<HealthBar>();
         rangeScanner = GetComponent<RangeScanner>();
+        mover = GetComponent<UnitMovementController>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void Start() // Colors units based on team, starts units at full hp, and gives units other components
     {
@@ -53,7 +57,7 @@ public class AutoBattlerUnit : MonoBehaviour
 
         grid = FindFirstObjectByType<GridManager>(); // intialize the scene grid it lives on
         pathfinder = new Pathfinder(grid); // this unit uses A* pathfinding, so we use that as the pathfinder
-        mover = GetComponent<UnitMovementController>(); // intialize the mover which changes the unit's position visually
+        // mover = GetComponent<UnitMovementController>(); // intialize the mover which changes the unit's position visually
         battleState = FindFirstObjectByType<BattleState>(); //intialize the battle state to keep track of win/loss conditions
 
         if (team == UnitTeam.Ally) // keep track of number of units for win/loss conditions
@@ -64,21 +68,30 @@ public class AutoBattlerUnit : MonoBehaviour
             battleState.EnemyCount++; // if an enemy, increment the enemy count
         }
 
-        grid.RegisterUnit(gameObject); // register the unit on the manager's grid data to track position and occupancy
+        //grid.RegisterUnit(gameObject); // register the unit on the manager's grid data to track position and occupancy
 
         thinkTimer = thinkInterval; // give brief delay so timescale changes before first think
     }
 
     private void OnDestroy() // when a unit is destroyed on game stop or unit death
     {
-        grid.UnregisterUnit(gameObject); // unregister from manager's grid
+        if (!Application.isPlaying) return;
+        if (battleState == null) return;
+        if (grid == null) return;
+
+        grid.UnregisterUnit(gameObject);
+
         if (team == UnitTeam.Ally)
         {
-            battleState.AllyCount--; // if an ally death, decrement the ally count
-        } else if (team == UnitTeam.Enemy)
-        {
-            battleState.EnemyCount--; // if an enemy death, decrement the enemy count
+            battleState.AllyCount--;
         }
+        else if (team == UnitTeam.Enemy)
+        {
+            battleState.EnemyCount--;
+        }
+
+        battleState.CheckWinLoss();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update() // called every frame to manage the think timer
@@ -176,20 +189,47 @@ public class AutoBattlerUnit : MonoBehaviour
     public void increaseAtk()
     {
         damage = damage * 1.1f; // increase damage by 10%
+        SaveUnit();
     }
 
     public void increaseHealth()
     {
         maxHealth = maxHealth * 1.1f; // increase health by 10%
+        SaveUnit();
     }
 
     public void increaseSpeed()
     {
         thinkInterval -= 0.02f; // increase atk spd and move speed
+        SaveUnit();
     }
 
     public void increaseRange()
     {
         range += 1; // increase hex range by 1
+        SaveUnit();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        grid = FindFirstObjectByType<GridManager>();
+        battleState = FindFirstObjectByType<BattleState>();
+        if (grid != null)
+        {
+            pathfinder = new Pathfinder(grid);
+        }
+        if (mover != null)
+        {
+            mover.grid = FindFirstObjectByType<GridManager>();
+        }
+        if (grid != null)
+        {
+            grid.RegisterUnit(gameObject);
+        }
+    }
+
+    private void SaveUnit()
+    {
+        FindFirstObjectByType<BattleState>().SaveAllAllies();
     }
 }

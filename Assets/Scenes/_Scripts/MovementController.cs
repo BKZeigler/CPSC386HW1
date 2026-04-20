@@ -1,16 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UnitMovementController : MonoBehaviour // file created by Microsoft Copilot
 {
     public float moveSpeed = 4f; // speed of unit movement
 
-    private GridManager grid; // stores current grid manager in scene
+    public GridManager grid; // stores current grid manager in scene
 
+    void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
     private void Start()
     {
         grid = FindFirstObjectByType<GridManager>(); // grab the grid manager in scene
     }
+
+    
 
     public IEnumerator MoveToCell(Vector3Int targetCell) // the visual movement of the unit on the hex grid
     {
@@ -26,5 +33,15 @@ public class UnitMovementController : MonoBehaviour // file created by Microsoft
         }
 
         transform.position = end; // ensure unit ends in center of hex
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        grid = FindFirstObjectByType<GridManager>();
     }
 }

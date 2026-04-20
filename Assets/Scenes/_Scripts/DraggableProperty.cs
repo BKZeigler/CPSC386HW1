@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DragAndDropNewInput2D : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class DragAndDropNewInput2D : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        grid = FindFirstObjectByType<Grid>(); // need grid to lock on drag stop
+        //grid = FindFirstObjectByType<Grid>(); // need grid to lock on drag stop
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Update()
@@ -75,5 +77,16 @@ public class DragAndDropNewInput2D : MonoBehaviour
         Vector3 center = grid.GetCellCenterWorld(cell); // get the center of the cell
 
         transform.position = center; // make the position of unit the center of the cell
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        grid = FindFirstObjectByType<Grid>();
+        cam = Camera.main;
     }
 }

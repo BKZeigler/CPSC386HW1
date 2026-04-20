@@ -6,4 +6,12 @@ public class AllyPersist : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
+    //void OnApplicationQuit()
+    //{
+    //    foreach (Transform child in transform)
+    //    {
+    //        Destroy(child.gameObject);
+    //    }
+    //}
 }
