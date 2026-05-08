@@ -26,11 +26,30 @@ public class SoundManager : MonoBehaviour // used referenced youtube videos and 
 
         AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set volume to saved volume
 
+        Debug.Log("SoundManager initialized with volume: " + AudioListener.volume); // log initial volume for debugging
+        Debug.Log(PlayerPrefs.GetFloat("Volume")); // log saved volume for debugging
+
         SceneManager.sceneLoaded += OnSceneLoaded; // subscribe to scene loaded event to reassign slider when scene changes
 
         AssignSliderInScene(); // assign slider in case starting in a scene with a slider
     }
 
+    void Update()
+    {
+        if (volumeSlider != null)
+        {
+            Debug.Log("Slider live value: " + volumeSlider.value);
+        }
+        int listenerCount = FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Length;
+
+        Debug.Log(
+            "Audio Debug → " +
+            "ListenerVol=" + AudioListener.volume +
+            " | Pause=" + AudioListener.pause +
+            " | TimeScale=" + Time.timeScale +
+            " | Listeners=" + listenerCount
+        );
+    }
 
     void OnDestroy()
     {
@@ -63,9 +82,14 @@ public class SoundManager : MonoBehaviour // used referenced youtube videos and 
             if (!s.CompareTag("VolumeSlider"))
                 continue;
 
+            Debug.Log("Found slider: " + s.name + 
+            " | Scene: " + s.gameObject.scene.name + 
+            " | Active: " + s.gameObject.activeInHierarchy);
+
             // This is the correct slider
             volumeSlider = s;
             break;
+
         }
 
         if (volumeSlider == null) // if no slider was found
@@ -73,6 +97,7 @@ public class SoundManager : MonoBehaviour // used referenced youtube videos and 
 
         float saved = PlayerPrefs.GetFloat("Volume"); // get saved volume
         volumeSlider.value = saved; // set slider to saved volume
+        Debug.Log("Setting slider to saved value: " + saved);
 
         volumeSlider.onValueChanged.RemoveAllListeners(); // remove previous listeners to prevent multiple calls
         volumeSlider.onValueChanged.AddListener(SetVolume); // add listener to update volume when slider is changed

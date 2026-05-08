@@ -1,16 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour // Grid Manager file done by Microsoft Copilot
 {
     public Grid grid; // stores the grid in scene
+    public Tilemap terrainMap; // stores tilemap in scene to check for terrain
 
     private Dictionary<Vector3Int, GameObject> occupied = new(); // hexes with a unit gameobject are occupied
+
+    private HashSet<Vector3Int> blockedCells = new(); // terrain
 
     private void Awake()
     {
         if (grid == null) // if a grid in scene, get it and store it
             grid = GetComponent<Grid>();
+
+        LoadBlockedCells();
+    }
+
+    private void LoadBlockedCells() // scans the tilemap for tiles labeled blocked
+    {
+        foreach (var pos in terrainMap.cellBounds.allPositionsWithin)
+        {
+            if (!terrainMap.HasTile(pos))
+                continue;
+
+            TerrainTile tile = terrainMap.GetTile<TerrainTile>(pos);
+            if (tile != null && tile.isBlocked)
+                blockedCells.Add(pos);
+        }
+    }
+
+    public void SetBlocked(Vector3Int cell, bool blocked) // for future use if we want to change terrin during game
+    {
+        if (blocked)
+            blockedCells.Add(cell);
+        else
+            blockedCells.Remove(cell);
+    }
+
+    public bool IsBlocked(Vector3Int cell) // returns if a cell is blocked or not
+    {
+        return blockedCells.Contains(cell);
     }
 
     public bool IsOccupied(Vector3Int cell) // checks if a cell has a unit in its dictionary

@@ -30,7 +30,7 @@ public class Pathfinder // A* pathfinding on hex grids created by https://www.re
             {
                 Vector3Int neighbor = current + offset; // try the neighbor hex
 
-                if (grid.IsOccupied(neighbor) && neighbor != goal) // if occupied and not goal, have to do something else
+                if ((grid.IsBlocked(neighbor) || grid.IsOccupied(neighbor)) && neighbor != goal) // if occupied and not goal, have to do something else
                     continue;
 
                 int tentative = gScore[current] + 1; // increase action cost by 1
