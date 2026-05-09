@@ -30,6 +30,7 @@ public class GridManager : MonoBehaviour // Grid Manager file done by Microsoft 
             if (tile != null && tile.isBlocked)
                 blockedCells.Add(pos);
         }
+        Debug.Log($"Loaded {blockedCells.Count} blocked cells from terrain.");
     }
 
     public void SetBlocked(Vector3Int cell, bool blocked) // for future use if we want to change terrin during game

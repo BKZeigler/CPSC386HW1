@@ -36,19 +36,19 @@ public class SoundManager : MonoBehaviour // used referenced youtube videos and 
 
     void Update()
     {
-        if (volumeSlider != null)
-        {
-            Debug.Log("Slider live value: " + volumeSlider.value);
-        }
-        int listenerCount = FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Length;
+        //if (volumeSlider != null)
+        //{
+            //Debug.Log("Slider live value: " + volumeSlider.value);
+        //}
+        //int listenerCount = FindObjectsByType<AudioListener>(FindObjectsSortMode.None).Length;
 
-        Debug.Log(
-            "Audio Debug → " +
-            "ListenerVol=" + AudioListener.volume +
-            " | Pause=" + AudioListener.pause +
-            " | TimeScale=" + Time.timeScale +
-            " | Listeners=" + listenerCount
-        );
+        //Debug.Log(
+        //    "Audio Debug → " +
+        //    "ListenerVol=" + AudioListener.volume +
+        //    " | Pause=" + AudioListener.pause +
+        //    " | TimeScale=" + Time.timeScale +
+        //    " | Listeners=" + listenerCount
+       // );
     }
 
     void OnDestroy()

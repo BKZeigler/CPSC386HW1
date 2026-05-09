@@ -6,8 +6,9 @@ public class MainMenu : MonoBehaviour // stores UI functions
 {
     public void LoadGame() // load first level scene
     {
-
-        Debug.Log("Load Game button clicked!"); // for testing
+        Debug.Log("LevelOne defeated? " + LevelProgress.Instance.IsLevelDefeated("LevelOne"));
+        Debug.Log("LevelTwo defeated? " + LevelProgress.Instance.IsLevelDefeated("LevelTwo"));
+        Debug.Log("LevelThree defeated? " + LevelProgress.Instance.IsLevelDefeated("LevelThree"));
         if (LevelProgress.Instance.IsLevelDefeated("LevelOne") && !LevelProgress.Instance.IsLevelDefeated("LevelTwo")) // if first level defeated
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("LevelTwo"); // load second
